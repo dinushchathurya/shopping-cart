@@ -13,6 +13,11 @@
     "hbs": "~4.0.4",
     "http-errors": "~1.6.3",
     "mongoose": "^5.10.2",
-    "morgan": "~1.9.1"
+    "morgan": "~1.9.1",
+    "webpack-dev-server": "^3.11.0",
+    "body-parser": "~1.13.2"
+  },
+  "devDependencies": {
+    "node-loader": "^1.0.1"
   }
 }

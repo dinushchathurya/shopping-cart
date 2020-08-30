@@ -4,23 +4,24 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var expressHbs = require('express-handlebars');
-var indexRouter = require('./routes/index');
+var routes = require('./routes/index');
 var mongoose = require('mongoose');
+var bodyParser = require('body-parser');
 
 var app = express();
-mongoose.connect('mongodb+srv://admin:admin123@shopping.ovkpc.mongodb.net/node-shopping')
+mongoose.connect('localhost:27017/nodeshopping');
 
 // view engine setup
 app.engine('.hbs', expressHbs({defaultLayout:'layout', extname: '.hbs'}));
 app.set('view engine', '.hbs');
 
 app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
+app.use('/', routes);
 
 
 // catch 404 and forward to error handler
