@@ -9,7 +9,7 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 
 var app = express();
-mongoose.connect('localhost:27017/nodeshopping');
+mongoose.connect('127.0.0.1:27017/shopping-cart');
 
 // view engine setup
 app.engine('.hbs', expressHbs({defaultLayout:'layout', extname: '.hbs'}));
