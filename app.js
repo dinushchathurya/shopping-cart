@@ -7,9 +7,24 @@ var expressHbs = require('express-handlebars');
 var routes = require('./routes/index');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
+var favicon = require('serve-favicon');
 
 var app = express();
-mongoose.connect('127.0.0.1:27017/shopping-cart');
+mongoose.connect('localhost:27017/shopping-cart',{
+  useNewUrlParser:true,
+  useUnifiedTopology:true,
+  useFindAndModify:false
+});
+console.log(`Database connection open to ${mongoose.connection.host} ${mongoose.connection.name}`);
+
+mongoose.connection.on('error', function (err) {
+  console.log('Mongoose default connection error: ' + err);
+});
+
+mongoose.connection.on('disconnected', function () {
+  console.log('Mongoose default connection disconnected');
+});
+
 
 // view engine setup
 app.engine('.hbs', expressHbs({defaultLayout:'layout', extname: '.hbs'}));
